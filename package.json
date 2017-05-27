@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Cawerit/cawerit.github.io#readme",
   "private": true,
   "dependencies": {
-    "kieliprojekti": "git+https://github.com/Cawerit/kieliprojekti.git"
+    "jquery": "^3.2.1",
+    "kieliprojekti": "git+https://github.com/Cawerit/kieliprojekti.git",
+    "xterm": "^2.6.0"
   }
 }
