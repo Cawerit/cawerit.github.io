@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prekieliprojekti:build": "mkdirp \"kieliprojekti/.tmp\" && nearleyc \"node_modules/kieliprojekti/kielioppi.ne\" -o \"kieliprojekti/.tmp/parseri.js",
+    "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\""
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,16 @@
   "homepage": "https://github.com/Cawerit/cawerit.github.io#readme",
   "private": true,
   "dependencies": {
+    "browserify": "^14.3.0",
     "jquery": "^3.2.1",
     "kieliprojekti": "git+https://github.com/Cawerit/kieliprojekti.git",
+    "lodash": "^4.17.4",
     "xterm": "^2.6.0"
+  },
+  "devDependencies": {
+    "aliasify": "^2.1.0",
+    "nearley": "^2.9.2",
+    "mkdirp": "^0.5.1",
+    "webpack": "^2.6.1"
   }
 }

@@ -13,7 +13,7 @@ body {
     height: 100%;
 }
 
-#editori { 
+#editori {
     position: absolute;
     top: 0px;
     bottom: 0;
@@ -27,6 +27,7 @@ body {
     right: 0px;
     width: 50%;
     height: 100%;
+    border-left: 5px solid #315E80;
 }
 
 #komentorivi {
@@ -54,14 +55,13 @@ div.console { font-size: 18px }
  {
      color: #fff;
      font-family: monospace;
-     margin-top: 10px;
-     font-size: 18px;
+     margin-top: 5px;
+     font-size: 1.3em;
  }
 
 .jquery-console-cursor
  {
     background:#fefefe;
     color:#333;
-    font-weight:bold;
-    padding-right: 3px;
+    font-weight: bold;
  }
