@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "aliasify": "^2.1.0",
+    "css-loader": "^0.28.3",
     "mkdirp": "^0.5.1",
     "nearley": "^2.9.2",
     "raw-loader": "^0.5.1",
