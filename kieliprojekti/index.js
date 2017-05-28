@@ -1,11 +1,14 @@
-/* global ace, $ */
+/* global, $ */
 
 import 'bootstrap';
 import _ from 'lodash';
 import parseri from 'kieliprojekti/browser.js';
+import initEditori from './editori.js';
 
 import standardikirjastoJS from 'raw-loader!kieliprojekti/kirjastot/standardikirjasto.js';
 import standardikirjasto from 'raw-loader!kieliprojekti/kirjastot/standardikirjasto.ö';
+
+import esimerkit from './esimerkkitiedostot.js';
 
 
 $(initUI);
@@ -19,13 +22,20 @@ const mockRajapinnat = `
 `;
 
 function initUI() {
-    const editor = ace.edit("editori");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-    // Disabloi deprecation-varoitus
-    editor.$blockScrolling = Infinity;
-    // Disabloi validointi
-    editor.getSession().setUseWorker(false);
+
+    // Kiinnitä ace-editori elementtiin #editori
+    const editor = initEditori();
+
+    // Rakennetaan esimerkkilista "kieliprojekti/esimerkit" kansiossa olevista tiedostoista
+    const esimerkitUl = $('#esimerkit');
+    esimerkit.forEach((tpl, nimi) => {
+        const btn = $(`<li><a href="">${nimi}</a></li>`);
+        btn.click(e => {
+            e.preventDefault();
+            editor.setValue(tpl);
+        });
+        esimerkitUl.append(btn);
+    });
 
     let odottavaKysymys;
 
@@ -75,24 +85,10 @@ function initUI() {
         }  
     };
 
-    const template = tpl => () => {
-        editor.setValue(tpl);
-    };
-
-    const helloWorldTemplate = `
-tila = ""
-
-ohjelma(tila) =
-    kun tila
-    on "" niin kysy("Mikä on nimesi? ", identiteetti)
-    tai näytä("Hei " ++ tila) muutoin
-    `;
 
     const actions = {
-        
-        "hello-world-esimerkki": template(helloWorldTemplate),
 
-        compile(el) {
+        compile() {
             komentorivi.clearScreen();
             const koodi = editor.getValue();
             let tulos;
@@ -110,7 +106,8 @@ ohjelma(tila) =
 
                         ${generoituKoodi}
                     })();
-                })();`
+                })();`;
+
             } catch (virhe) {
                 console.error(virhe);
                 komentorivi.report(virhe, 'prompt');

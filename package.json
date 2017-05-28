@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\""
+    "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\"",
+    "kieliprojekti:dev": "webpack --config \"kieliprojekti/webpack.config.js\" --watch"
   },
   "repository": {
     "type": "git",
