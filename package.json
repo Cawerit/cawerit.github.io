@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prekieliprojekti:build": "mkdirp \"kieliprojekti/.tmp\" && nearleyc \"node_modules/kieliprojekti/kielioppi.ne\" -o \"kieliprojekti/.tmp/parseri.js",
     "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\""
   },
   "repository": {
@@ -19,6 +18,7 @@
   "homepage": "https://github.com/Cawerit/cawerit.github.io#readme",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "browserify": "^14.3.0",
     "jquery": "^3.2.1",
     "kieliprojekti": "git+https://github.com/Cawerit/kieliprojekti.git",
@@ -27,8 +27,9 @@
   },
   "devDependencies": {
     "aliasify": "^2.1.0",
-    "nearley": "^2.9.2",
     "mkdirp": "^0.5.1",
+    "nearley": "^2.9.2",
+    "raw-loader": "^0.5.1",
     "webpack": "^2.6.1"
   }
 }

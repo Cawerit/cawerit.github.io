@@ -1,5 +1,6 @@
 const
-    path = require('path')
+    path    = require('path'),
+    webpack = require('webpack');
 
 const relative = (...p) => path.join(__dirname, ...p);
 
@@ -11,8 +12,10 @@ module.exports = {
     },
     resolve: {
         modules: [
-            relative('.tmp'),
             relative('..', 'node_modules')
         ]
-    }
+    },
+    plugins: [
+        new webpack.IgnorePlugin(/^fs$/)
+    ]
 };
