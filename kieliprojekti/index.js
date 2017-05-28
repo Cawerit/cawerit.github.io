@@ -1,30 +1,19 @@
-/* global, $ */
-
 import 'bootstrap';
 import _ from 'lodash';
-import parseri from 'kieliprojekti/browser.js';
 import initEditori from './editori.js';
-
-import standardikirjastoJS from 'raw-loader!kieliprojekti/kirjastot/standardikirjasto.js';
-import standardikirjasto from 'raw-loader!kieliprojekti/kirjastot/standardikirjasto.ö';
+import initKomentorivi from './komentorivi.js';
+import { store, valitse, update } from './store.js';
+import './compile.js';
+import './nayta-generoitu-koodi.js';
 
 import esimerkit from './esimerkkitiedostot.js';
 
 
-$(initUI);
-
-const mockRajapinnat = `
-
-    var console = kieliprojekti.mock.console;
-    var require = kieliprojekti.mock.require;
-    var process = kieliprojekti.mock.process;
-
-`;
-
-function initUI() {
+$(function () {
 
     // Kiinnitä ace-editori elementtiin #editori
-    const editor = initEditori();
+    initEditori();
+    initKomentorivi();
 
     // Rakennetaan esimerkkilista "kieliprojekti/esimerkit" kansiossa olevista tiedostoista
     const esimerkitUl = $('#esimerkit');
@@ -32,92 +21,40 @@ function initUI() {
         const btn = $(`<li><a href="">${nimi}</a></li>`);
         btn.click(e => {
             e.preventDefault();
-            editor.setValue(tpl);
+            update('VALITTU_ESIMERKKI', tpl);
         });
         esimerkitUl.append(btn);
     });
 
-    let odottavaKysymys;
-
-    const komentorivi = $('#komentorivi').console({
-        welcomeMessage: 'Kirjoita Ö-koodi vasemmalla olevaan kenttään ja suorita se tässä',
-        promptLabel: '> ',
-        commandHandle: function(input) {
-            if (odottavaKysymys) {
-                odottavaKysymys(input);
-                odottavaKysymys = undefined;
-            }
-            return '';
-        },
-        commandValidate: function(input) {
-            return !!input;
-        }
-    });
-
-    window.kieliprojekti = {
-        mock: {
-            console: {
-                log(...msg) {
-                    for (const m of msg) komentorivi.report(m + '\n');
-                }
-            },
-            require(moduleName) {
-                switch (moduleName) {
-                    case 'readline': {
-                        return {
-                            createInterface() {
-                                return {
-                                    question(k, cb) {
-                                        komentorivi.report(k);
-                                        odottavaKysymys = cb;
-                                    },
-                                    close() {}
-                                }
-                            }
-                        };
-                    }
-                }
-            },
-            process: {
-                stdin: {},
-                stdout: {}
-            }
-        }  
-    };
 
 
     const actions = {
-
         compile() {
-            komentorivi.clearScreen();
-            const koodi = editor.getValue();
-            let tulos;
-            try {
-                
-                const { generoituKoodi, generoituStandardikirjasto } = parseri(koodi, 'javascript', { standardikirjasto });
-                const br = '\n\n';
-
-                tulos = `(function(){
-                    ${mockRajapinnat}
-                    (function() {
-                        ${standardikirjastoJS}
-
-                        ${generoituStandardikirjasto}
-
-                        ${generoituKoodi}
-                    })();
-                })();`;
-
-            } catch (virhe) {
-                console.error(virhe);
-                komentorivi.report(virhe, 'prompt');
-            }
-            new Function(tulos)();
+            update('COMPILE', null);
+        },
+        tulos_tab_js() {
+            update('TULOS_TAB', 'js');
+        },
+        tulos_tab_run() {
+            update('TULOS_TAB', 'run');
         }
     };
+
+    store
+        .filter(valitse('TULOS_TAB'))
+        .subscribe(({val}) => {
+            const id = 'tulos_tab_' + val;
+
+            $('[data-tulos-tab-content]').hide();
+            $(`[data-tulos-tab-content="${val}"`).show();
+            $('#tulos li').removeClass('active');
+            $('#' + id).addClass('active');
+        });
+
+    update('TULOS_TAB', 'js');
 
     _.forOwn(actions, (a, key) => {
         $('#' + key).on('click', a);
     });
 
-}
+});

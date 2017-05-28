@@ -24,6 +24,7 @@
     "jquery": "^3.2.1",
     "kieliprojekti": "git+https://github.com/Cawerit/kieliprojekti.git",
     "lodash": "^4.17.4",
+    "rxjs": "^5.4.0",
     "xterm": "^2.6.0"
   },
   "devDependencies": {

@@ -1,24 +1,15 @@
+/*
+
+    text-color #f8f8f2
+
+*/
+
 body {
     background: #272822;
-    color: white;
+    color: #f8f8f2;
     padding: 0px;
     margin: 0px;
     font-family: Arial;
-}
-
-.navbar {
-    border-radius: 0;
-    background-color: #282a36;
-    border: 0;
-    border-bottom: 3px solid #315E80;
-}
-
-.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand {
-    color: white !important;
-}
-
-.navbar-default .navbar-nav>.open>a {
-    background-color: #44475a !important;
 }
 
 #wrap {
@@ -46,12 +37,9 @@ body {
 }
 
 #komentorivi {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
+    margin: 10px;
 }
+
 
 .select {
     color: black;
@@ -72,3 +60,28 @@ body {
     color:#333;
     font-weight: bold;
  }
+
+/* Bootstrapin default-teemoituksen ylikirjoitus */
+.navbar {
+    border-radius: 0;
+    background-color: #282a36;
+    border: 0;
+    border-bottom: 3px solid #315E80;
+}
+
+.nav-tabs > li > a {
+    border-radius: 0;
+    color: #f8f8f2;
+}
+
+.nav-tabs > li:hover > a, .nav-tabs > li > a:active {
+    color: #44475a;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
+    color: #f8f8f2 !important;
+}
+
+.navbar-default .navbar-nav>.open>a {
+    background-color: #44475a !important;
+}

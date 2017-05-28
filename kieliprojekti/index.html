@@ -27,7 +27,7 @@
                             <li><a href="#"></a></li>
                         </ul>
                     </li>
-                    <li><a href="#" id="compile"><i class="glyphicon glyphicon-play-circle"></i> Suorita</a></li>
+                    <li><a href="#" id="compile"><i class="glyphicon glyphicon-play-circle"></i> Käännä</a></li>
                 </ul>
             </div>
         </div>
@@ -37,8 +37,14 @@
       <div id="wrap">
           <div id="editori"></div>
           <div id="tulos">
-              <div class
-              <div id="komentorivi"></div>
+              <ul class="nav nav-tabs">
+                <li role="presentation" id="tulos_tab_js"><a href="#">JavaScript</a></li>
+                <li role="presentation" id="tulos_tab_run"><a href="#">Suorita</a></li>
+              </ul>
+
+              <div id="output-js" data-tulos-tab-content="js"></div>
+              <div id="komentorivi" data-tulos-tab-content="run"></div>
+
           </div>
       </div>
 
