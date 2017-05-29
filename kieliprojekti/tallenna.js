@@ -14,7 +14,7 @@ function lueTallennettu() {
 
     if (ind !== -1) {
         const data = hash.substring(ind + MAAGINEN_STRING.length);
-        return atob(data);
+        return decode(data);
     }
 
     return null;
@@ -22,9 +22,16 @@ function lueTallennettu() {
 
 function tallenna(koodi) {
     // Base-64 enkoodataan koodi
-    const data = btoa(koodi);
+    const data = encode(koodi);
     location.hash = MAAGINEN_STRING +  data;
 }
 
+function encode(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+
+function decode(b64str) {
+    return decodeURIComponent(escape(atob(b64str)));
+}
 
 export { lueTallennettu, tallenna };

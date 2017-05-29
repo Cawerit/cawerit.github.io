@@ -23,6 +23,18 @@ body {
     width: 50%;
     height: auto;
 }
+ 
+ 
+#compile {
+    color: #8be9fd !important;
+    font-size: 120%;
+    padding-left: 80px;
+}
+
+#compile:hover {
+    text-decoration: none !important;
+    color: #ff5555 !important;
+}
 
 #tulos {
     position: absolute;

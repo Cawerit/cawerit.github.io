@@ -9,6 +9,7 @@ import './nayta-generoitu-koodi.js';
 
 import esimerkit from './esimerkkitiedostot.js';
 
+const LS_KEY_FIRST = 'kayty-aiemmin';
 
 $(function () {
 
@@ -26,8 +27,6 @@ $(function () {
         });
         esimerkitUl.append(btn);
     });
-
-
 
     const actions = {
         compile() {
@@ -71,6 +70,16 @@ $(function () {
 
     if (urlKoodi) {
         update('VALITTU_ESIMERKKI', urlKoodi);
+    } else {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem(LS_KEY_FIRST) !== 'true') {
+            localStorage.setItem(LS_KEY_FIRST, 'true');
+
+            const [[, esimerkki1]] = esimerkit;
+
+            update('VALITTU_ESIMERKKI', esimerkki1);
+        }
     }
+
+    localStorage.setItem(LS_KEY_FIRST, 'true');
 
 });

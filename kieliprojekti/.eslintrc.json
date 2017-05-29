@@ -12,7 +12,8 @@
         "$": false,
         "window": false,
         "document": false,
-        "hljs": false
+        "hljs": false,
+        "localStorage": false
     },
     "rules": {
         "no-console": 0

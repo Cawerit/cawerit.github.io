@@ -39,10 +39,9 @@ CodeMirror.defineSimpleMode('ö', {
     { regex: /\b(.+)\s?(\(.*\))(\s?=)/, token: ['variable-3', 'variable-2', 'operator'] },
     // Rules are matched in the order in which they appear, so there is
     // no ambiguity between this one and the one above
-    { regex: /[-+\/*=]+|on:/, token: 'operator' },
     { regex: /\b(kun|on|niin|tai|muutoin|infiksi)\b/, token: 'keyword' },
     { regex: /\b(Tosi|Epätosi)\b/, token: 'atom' },
-    { regex: /eiMitään|[$@:]/, token: 'builtin' },
+    { regex: /eiMitään/, token: 'builtin' },
     { regex: /(tämä\()(.*)(\))/, token: ['builtin', null, 'builtin'] },
     { regex: /\s-?[0-9]+\b/i, token: 'number' }
   ],
