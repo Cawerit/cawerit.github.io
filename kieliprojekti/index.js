@@ -3,6 +3,7 @@ import _ from 'lodash';
 import initEditori from './editori.js';
 import initKomentorivi from './komentorivi.js';
 import { store, valitse, update } from './store.js';
+import { lueTallennettu, tallenna } from './tallenna.js';
 import './compile.js';
 import './nayta-generoitu-koodi.js';
 
@@ -37,6 +38,12 @@ $(function () {
         },
         tulos_tab_run() {
             update('TULOS_TAB', 'run');
+        },
+        tallenna() {
+            const val = initEditori().getValue();
+            if (val && val.trim().length) {
+                tallenna(val);
+            }
         }
     };
 
@@ -54,7 +61,16 @@ $(function () {
     update('TULOS_TAB', 'js');
 
     _.forOwn(actions, (a, key) => {
-        $('#' + key).on('click', a);
+        $('#' + key).on('click', e => {
+            e.preventDefault();
+            a(e);
+        });
     });
+
+    const urlKoodi = lueTallennettu();
+
+    if (urlKoodi) {
+        update('VALITTU_ESIMERKKI', urlKoodi);
+    }
 
 });
