@@ -7,6 +7,11 @@ export default {
         log(...msg) {
             const k = getKomentorivi();
             for (const m of msg) k.report(m + '\n');
+        },
+        error(err) {
+            console.error(err);
+            var muokattu = err.toString().replace(/Error/g, 'Virhe');
+            getKomentorivi().report(muokattu);
         }
     },
     require(moduleName) {

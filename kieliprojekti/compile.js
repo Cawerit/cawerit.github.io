@@ -81,7 +81,7 @@ store
 
         if (virhe) {
             console.error(virhe);
-            const v = _.toString(virhe);
+            const v = _.toString(virhe).replace(/Error/, 'Virhe');
 
             if (state.TULOS_TAB === 'run') {
                 komentorivi.report(v);
