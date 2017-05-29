@@ -18,6 +18,25 @@ const babelLoaderConfig = {
     }
 };
 
+const jsBuildRules = [
+    {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: babelLoaderConfig
+    },
+    {
+        test: /node_modules(\/|\\)kieliprojekti(\/|\\).*\.js$/,
+        use: babelLoaderConfig
+    }
+];
+
+const cssBuildRules = [
+    {
+        test: /.css$/,
+        use: ['style-loader', 'css-loader']
+    }
+];
+
 module.exports = {
     entry: relative('index.js'),
     output: {
@@ -30,17 +49,7 @@ module.exports = {
         ]
     },
     module: {
-        rules: isProd ? [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: babelLoaderConfig
-            },
-            {
-                test: /node_modules(\/|\\)kieliprojekti(\/|\\).*\.js$/,
-                use: babelLoaderConfig
-            }
-        ] : [],
+        rules: cssBuildRules.concat(isProd ? jsBuildRules : []),
     },
     plugins: [
         new webpack.IgnorePlugin(/^fs$/)

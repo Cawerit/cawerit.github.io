@@ -6,6 +6,7 @@ import { store, valitse, update } from './store.js';
 import { lueTallennettu, tallenna } from './tallenna.js';
 import './compile.js';
 import './nayta-generoitu-koodi.js';
+import './styles.js';
 
 import esimerkit from './esimerkkitiedostot.js';
 
