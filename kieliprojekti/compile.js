@@ -3,6 +3,7 @@ import getKomentorivi from './komentorivi.js';
 import getEditori from './editori.js';
 import compiler from 'kieliprojekti/browser.js';
 import mockRajapinnat from './mock-rajapinnat.js';
+import _ from 'lodash';
 
 // Tuodaan kääntämisessä tarvittavat lisätiedostot "raw"-loaderin avulla normaalina tekstinä
 import standardikirjastoJS from 'raw-loader!kieliprojekti/kirjastot/standardikirjasto.js';
@@ -17,7 +18,6 @@ store
         let koodi = state.KOODI;
         
         if (key === 'COMPILE') {
-            komentorivi.clearScreen();
             koodi = getEditori().getValue();
             update('KOODI', koodi);
         }
@@ -26,6 +26,7 @@ store
             return;
         }
 
+        komentorivi.clearScreen();
         let generoitu, virhe;
 
         try {
@@ -35,6 +36,12 @@ store
                 // Jos "JavaScript" tab on auki, tarvitaan
                 // ainoastaan generoitu koodi, ei esim. standardikirjastoa
                 generoitu = generoituKoodi;
+
+                // Tyylisyistä otetaan pois myös "if (typeof ohjelma !== 'function') jms sanity-checkit",
+                // sekä ympäriöivä IIFE
+                generoitu = generoitu.slice(generoitu.indexOf('\n')); // Otetaan ensimmäinen rivi pois
+                generoitu = generoitu.slice(0, generoitu.lastIndexOf("if (typeof ohjelma !== 'function'"));
+
             } else {
                 // Jos "Suorita" tab on auki, generoidaan suoritettavaksi kelpaava ohjelma
                 generoitu =
@@ -50,7 +57,7 @@ store
             virhe = e;
         }
 
-        if (state.TULOS_TAB === 'run' && generoitu && !virhe) {
+        if (state.TULOS_TAB === 'run') {
             // Suoritetaan generoitu js
             try {
                 
@@ -68,8 +75,19 @@ store
             } catch(e) {
                 virhe = e;
             }
-        } else {
+        } else if(!virhe) {
             update('GENEROITU', generoitu);
+        }
+
+        if (virhe) {
+            console.error(virhe);
+            const v = _.toString(virhe);
+
+            if (state.TULOS_TAB === 'run') {
+                komentorivi.report(v);
+            } else {
+                update('GENEROITU', v);
+            }
         }
 
     });
