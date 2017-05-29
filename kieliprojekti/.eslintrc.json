@@ -11,6 +11,7 @@
         "ace": false,
         "$": false,
         "window": false,
+        "document": false,
         "hljs": false
     },
     "rules": {
