@@ -14,12 +14,13 @@ store
     .filter(valitse('COMPILE', 'TULOS_TAB'))
     .subscribe(({ state, key }) => {
         const komentorivi = getKomentorivi();
+        let koodi = state.KOODI;
+        
         if (key === 'COMPILE') {
             komentorivi.clearScreen();
-            update('KOODI', getEditori().getValue());
+            koodi = getEditori().getValue();
+            update('KOODI', koodi);
         }
-        
-        const koodi = state.KOODI;
 
         if (!koodi) {
             return;

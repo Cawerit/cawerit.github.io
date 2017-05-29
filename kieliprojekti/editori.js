@@ -1,4 +1,4 @@
-import { store, update, valitse } from './store.js';
+import { store, valitse } from './store.js';
 import { once } from 'lodash';
 
 export default once(() => {
@@ -14,7 +14,6 @@ export default once(() => {
         .filter(valitse('VALITTU_ESIMERKKI'))
         .subscribe(({ val }) => {
             editor.setValue(val);
-            update('KOODI', val);
         });
 
     return editor;

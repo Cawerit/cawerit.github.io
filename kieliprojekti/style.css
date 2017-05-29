@@ -85,3 +85,11 @@ body {
 .navbar-default .navbar-nav>.open>a {
     background-color: #44475a !important;
 }
+
+pre {
+    border-radius: 0;
+    background-color: transparent;
+    border: 0;
+    color: #f8f8f2;
+    font-size: 90%;
+}

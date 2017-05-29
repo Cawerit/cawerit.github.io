@@ -1,11 +1,6 @@
 import getKomentorivi from './komentorivi.js';
-import {update, store, valitse} from './store.js';
-
-store
-    .filter(valitse('COMPILE'))
-    .subscribe(() => {
-        update('ODOTTAVA_KYSYMYS', null);
-    });
+import {store} from './store.js';
+import 'rxjs/add/operator/first';
 
 export default {
     console: {
@@ -21,7 +16,13 @@ export default {
                     createInterface() {
                         return {
                             question(k, cb) {
-                                update('ODOTTAVA_KYSYMYS', cb);
+                                store
+                                    .first()
+                                    .subscribe(({key, val}) => {
+                                        if (key === 'KOMENTORIVI_INPUT') {
+                                            cb(val);
+                                        }
+                                    });
                                 getKomentorivi().report(k);
                             },
                             close() {}

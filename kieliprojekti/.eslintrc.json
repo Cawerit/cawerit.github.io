@@ -10,7 +10,8 @@
     "globals": {
         "ace": false,
         "$": false,
-        "window": false
+        "window": false,
+        "hljs": false
     },
     "rules": {
         "no-console": 0
