@@ -4,7 +4,7 @@ import {update} from './store.js';
 export default once(() => {
     const el = $('#komentorivi');
     const k = el.console({
-        welcomeMessage: 'Kirjoita Ö-koodi vasemmalla olevaan kenttään ja suorita se tässä',
+        welcomeMessage: 'Kirjoita Ö-koodi vasemmalla olevaan kenttään ja suorita se tässä klikkaamalla "Käännä"-painiketta',
         promptLabel: '> ',
         commandHandle: function(input) {
             if (input === 'help' || input === 'apua') {

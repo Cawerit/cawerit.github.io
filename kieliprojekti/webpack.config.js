@@ -43,6 +43,12 @@ module.exports = {
         path: relative('dist'),
         filename: 'bundle.js'
     },
+    node: {
+        console: false,
+        process: false,
+        global: false,
+        buffer: false
+    },
     resolve: {
         modules: [
             relative('..', 'node_modules')
