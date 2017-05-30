@@ -3,12 +3,23 @@ import { once, debounce } from 'lodash';
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/mode/simple';
 
-
 export default once(() => {
     const editor = CodeMirror(document.getElementById('editori'), {
         mode: 'ö',
         theme: 'monokai',
-        lineNumbers: true
+        lineNumbers: true,
+        indentUnit: 4,
+        extraKeys: {
+          Tab(cm) {
+              // Source: https://github.com/codemirror/CodeMirror/issues/988#issuecomment-14921785
+              if (cm.somethingSelected()) {
+                cm.indentSelection('add');
+              } else {
+                cm.replaceSelection(cm.getOption('indentWithTabs')? '\t':
+                  Array(cm.getOption('indentUnit') + 1).join(' '), 'end', '+input');
+              }
+          }
+        }
     });
 
     function setSize() {
