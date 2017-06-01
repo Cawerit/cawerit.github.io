@@ -6,7 +6,7 @@
   "scripts": {
     "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\"",
     "kieliprojekti:dev": "webpack --config \"kieliprojekti/webpack.config.js\" --watch",
-    "kieliprojekt-docsi:build": "webpack --config \"kieliprojekti-docs/webpack.config.js\"",
+    "kieliprojekti-docs:build": "webpack --config \"kieliprojekti-docs/webpack.config.js\"",
     "kieliprojekti-docs:dev": "webpack --config \"kieliprojekti-docs/webpack.config.js\" --watch",
     "postinstall": "cd node_modules/kieliprojekti && npm run build"
   },
