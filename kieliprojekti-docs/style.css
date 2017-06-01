@@ -1,0 +1,45 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+.brand {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.wrap {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+#sidebar {
+    flex: 0 0 auto;
+    padding: 40px;
+    margin: 0px;
+    background-color: #F8F8F8;
+    font-size: 110%;
+}
+
+
+#sidebar a {
+    color: black;
+}
+
+#main {
+    flex: 1;
+    padding: 40px;
+    min-width: 800px;
+}
+
+#sidebar li {
+    list-style: none;
+}
