@@ -1,0 +1,20 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "globals": {
+        "$": false,
+        "window": false,
+        "document": false,
+        "localStorage": false,
+        "location": false
+    },
+    "rules": {
+        "no-console": 0
+    }
+}

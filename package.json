@@ -6,6 +6,8 @@
   "scripts": {
     "kieliprojekti:build": "webpack --config \"kieliprojekti/webpack.config.js\"",
     "kieliprojekti:dev": "webpack --config \"kieliprojekti/webpack.config.js\" --watch",
+    "kieliprojekt-docsi:build": "webpack --config \"kieliprojekti-docs/webpack.config.js\"",
+    "kieliprojekti-docs:dev": "webpack --config \"kieliprojekti-docs/webpack.config.js\" --watch",
     "postinstall": "cd node_modules/kieliprojekti && npm run build"
   },
   "repository": {
@@ -32,10 +34,12 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.1",
     "css-loader": "^0.28.3",
+    "html-loader": "^0.4.5",
+    "markdown-loader": "^2.0.0",
     "mkdirp": "^0.5.1",
     "nearley": "^2.9.2",
-    "style-loader": "^0.18.1",
     "raw-loader": "^0.5.1",
+    "style-loader": "^0.18.1",
     "webpack": "^2.6.1"
   }
 }
