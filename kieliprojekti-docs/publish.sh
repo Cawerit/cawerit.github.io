@@ -1,6 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-nvm use stable
 npm install
 NODE_ENV=prod npm run kieliprojekti:build
 git update-index --no-assume-unchanged "kieliprojekti-docs/dist/bundle.js"
