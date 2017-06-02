@@ -1,5 +1,6 @@
 import allDocs from './all-docs.js';
 import debounce from 'lodash/debounce';
+import defaultArticle from './welcome.md';
 
 const
     hashReg = /#\/*(.*)/,
@@ -25,7 +26,7 @@ function parseDocElements() {
 }
 
 function setArticle(key) {
-    const template = docElements.get(key) || '';
+    const template = docElements.get(key) || defaultArticle;
 
     $('#main').html(template);
 }
@@ -50,9 +51,6 @@ function getDocKeyFromHash() {
 
     if (key && docElements.has(key)) {
         return key;
-    } else {
-        const [[r]] = docElements;
-        return r;
     }
 }
 
