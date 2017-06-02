@@ -1,5 +1,5 @@
 
-const req = require.context('./docs', false, /.md$/);
+const req = require.context('./doc-tiedostot', false, /.md$/);
 
 const dokumentaatio = new Set();
 
