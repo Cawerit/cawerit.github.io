@@ -36,6 +36,9 @@ $(function () {
         tulos_tab_js() {
             update('TULOS_TAB', 'js');
         },
+        tulos_tab_clj(){
+            update('TULOS_TAB', 'clj');  
+        },
         tulos_tab_run() {
             update('TULOS_TAB', 'run');
         },
@@ -46,6 +49,12 @@ $(function () {
             }
         }
     };
+    
+    $('#piilota_standardikirjasto').click(function() {
+        update('PIILOTA_KIRJASTO', this.checked); 
+    });
+    
+    update('PIILOTA_KIRJASTO', true);
 
     store
         .filter(valitse('TULOS_TAB'))

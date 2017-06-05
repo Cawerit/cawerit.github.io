@@ -41,12 +41,18 @@
           <div id="editori"></div>
           <div id="tulos">
               <ul class="nav nav-tabs">
+                <li role="presentation" id="tulos_tab_clj"><a href="#">Clojure <small>(beta)</small></a></li>
                 <li role="presentation" id="tulos_tab_js"><a href="#">JavaScript</a></li>
                 <li role="presentation" id="tulos_tab_run"><a href="#">Suorita</a></li>
               </ul>
-
+              
+              <div id="output-clj" data-tulos-tab-content="clj"></div>
               <div id="output-js" data-tulos-tab-content="js"></div>
               <div id="komentorivi" data-tulos-tab-content="run"></div>
+              
+              <div class="pull-right piilota-wrap">
+                  <input type="checkbox" id="piilota_standardikirjasto" checked> Piilota standardikirjasto
+              </div>
 
           </div>
       </div>

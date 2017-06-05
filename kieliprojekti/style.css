@@ -49,6 +49,10 @@ body {
     min-height: 40vh;
 }
 
+.piilota-wrap {
+    color: #f8f8f2;
+    margin-right: 30px;
+}
 
 .select {
     color: black;
